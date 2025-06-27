@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Coming Soon - Bright Future Academy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0; padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body, html {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .video-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .video-container video {
+   position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .video-container video.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 40px;
+      align-items: center;
+      color: white;
+      z-index: 10;
+      position: relative;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .nav-btn {
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 10px 20px;
+      border: none;
+      border-radius: 25px;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .nav-btn:hover {
+      background-color: white;
+      color: #2e8b57;
+    }
+
+    .main-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      margin-top: 100px;
+      color: white;
+      animation: fadeIn 2s ease;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    .main-content h1 {
+      font-size: 48px;
+      margin-bottom: 30px;
+    }
+
+    .subscribe-box input {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 30px;
+      width: 250px;
+      margin-right: 10px;
+    }
+
+    .subscribe-box button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 30px;
+      background-color: white;
+      color: #2e8b57;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .subscribe-box button:hover {
+      background-color: #2e8b57;
+      color: white;
+    }
+
+    /* Popup */
+    .popup {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.7);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .popup-content {
+      background-color: white;
+      color: black;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      width: 300px;
+      animation: slideUp 0.5s ease;
+      position: relative;
+    }
+
+    @keyframes slideUp {
+      from {transform: translateY(100px); opacity: 0;}
+      to {transform: translateY(0); opacity: 1;}
+    }
+
+    .popup-content h2 {
+      margin-bottom: 20px;
+    }
+
+    .popup-content input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+    }
+
+    .popup-content button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #2e8b57;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: red;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 600px) {
+      .main-content h1 {
+        font-size: 30px;
+      }
+      .subscribe-box input {
+        width: 60%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- VIDEO SLIDE BACKGROUND -->
+  <div class="video-container">
+    <video class="active" autoplay muted loop>
+      <source src="./video/video-1.mp4" type="video/mp4" />
+    </video>
+    <video autoplay muted loop>
+      <source src="./video/video-3.mp4" type="video/mp4" />
+    </video>
+    <video autoplay muted loop>
+      <source src="./video/video-4.mp4" type="video/mp4" />
+    </video>
+  </div>
+
+  <header>
+    <div class="logo">Bright Future Academy</div>
+    <button class="nav-btn" onclick="openPopup()">Register</button>
+  </header>
+
+  <div class="main-content">
+    <h1>We're Launching Soon!</h1>
+    <div class="subscribe-box">
+      <input type="email" placeholder="Enter your email..." />
+      <button>Subscribe</button>
+    </div>
+  </div>
+
+  <!-- POPUP -->
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <button class="close-btn" onclick="closePopup()">✖</button>
+      <h2>Register Now</h2>
+      <input type="text" placeholder="Full Name" />
+      <input type="email" placeholder="Email" />
+      <input type="tel" placeholder="Phone Number" />
+      <button>Submit</button>
+    </div>
+  </div>
+
+  <script>
+    function openPopup() {
+      document.getElementById("popup").style.display = "flex";
+    }
+
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+
+    // Video Slide Logic
+    const videos = document.querySelectorAll('.video-container video');
+    let index = 0;
+
+    setInterval(() => {
+      videos[index].classList.remove('active');
+      index = (index + 1) % videos.length;
+      videos[index].classList.add('active');
+    }, 5000); // 5 seconds
+  </script>
+
+</body>
+</html>
