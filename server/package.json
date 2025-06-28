@@ -1,21 +1,13 @@
 {
-  "name": "coming-soon",
+  "name": "server",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vinith789/Coming-sooner-website.git"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/vinith789/Coming-sooner-website/issues"
-  },
-  "homepage": "https://github.com/vinith789/Coming-sooner-website#readme",
   "description": "",
   "dependencies": {
     "body-parser": "^2.2.0",
