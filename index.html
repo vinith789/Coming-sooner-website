@@ -219,10 +219,11 @@
     <div class="popup-content">
       <button class="close-btn" onclick="closePopup()">✖</button>
       <h2>Register Now</h2>
-      <input type="text" placeholder="Full Name" />
-      <input type="email" placeholder="Email" />
-      <input type="tel" placeholder="Phone Number" />
-      <button>Submit</button>
+      <input id="fullName" type="text" placeholder="Full Name" />
+      <input id="email" type="email" placeholder="Email" />
+      <input id="phone" type="tel" placeholder="Phone Number" />
+      <button onclick="submitForm()">Submit</button>
+
     </div>
   </div>
 
@@ -244,6 +245,32 @@
       index = (index + 1) % videos.length;
       videos[index].classList.add('active');
     }, 5000); // 5 seconds
+
+    async function submitForm() {
+    const name = document.getElementById("fullName").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+
+    if (!name || !email || !phone) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:5000/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, phone })
+      });
+
+      const result = await response.json();
+      alert(result.message || "Submitted!");
+      closePopup();
+    } catch (error) {
+      alert("Submission failed.");
+      console.error(error);
+    }
+  }
   </script>
 
 </body>
