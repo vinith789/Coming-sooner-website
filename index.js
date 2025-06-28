@@ -8,6 +8,14 @@ const cors = require('cors');
 dotenv.config();
 const app = express();
 
+const path = require("path");
+app.use(express.static(path.join(__dirname, "public")));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+
 app.use(cors());
 app.use(bodyParser.json());
 
